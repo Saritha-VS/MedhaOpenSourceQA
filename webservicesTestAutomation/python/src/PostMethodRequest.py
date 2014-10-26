@@ -4,12 +4,13 @@ import urllib
 import requests
 import json
 
-class PostMethodRequest():
+class PostRequest():
 	base_url = ""
 	port = ""
 	path_url = ""
 	post_objectData = ""
 	complete_url = ""
+	response_code = ""
 
 	def __init__(self,baseurl="",port="",pathurl=""):
 		self.base_url=baseurl
@@ -38,18 +39,22 @@ class PostMethodRequest():
 	def setPostDataFromFile(self,postdatafilename):
 		if(isJSONFile):
 			with open(postdatafilename) as data_file:    
-    		post_objectData = json.load(data_file)
+    		self.post_objectData = json.load(data_file)
     	else:
     		print "Not able to set post data from given file, check the file type, it needs to be json file"
 
-	def setPostDataFromJSON(self):
+	def setPostDataFromJSON(self,jsonData):
+		# need to add JSON data validator
+		self.post_objectData = jsonData
 
 	def setAdditionalURLParameters(self):
-
+		print "TODO - not implemented at"
 	def getResponseCode(self):
+		return self.response_code
 
 	def makePostRequest(self):
 		response = requests.post(self.complete_url,data=post_objectData)
+		self.response_code =  response.status_code
 		return response
 
 
