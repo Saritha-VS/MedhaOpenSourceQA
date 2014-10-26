@@ -27,12 +27,25 @@ class PostMethodRequest():
 		else:
 			self.complete_url = self.complete_url
 
+	def isJSONFile(filename):
+		if(filename.endswith('.json')):
+			print " file is JSON file "
+			return true
+		else:
+			print " file is not a JSON file "
+			return false
+
 	def setPostDataFromFile(self,postdatafilename):
+		if(isJSONFile):
+			with open(postdatafilename) as data_file:    
+    		post_objectData = json.load(data_file)
+    	else:
+    		print "Not able to set post data from given file, check the file type, it needs to be json file"
 
 	def setPostDataFromJSON(self):
 
 	def setAdditionalURLParameters(self):
-		
+
 	def getResponseCode(self):
 
 	def makePostRequest(self):
